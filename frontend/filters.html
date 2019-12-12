@@ -1,0 +1,55 @@
+<script>
+     function chipOnClick(elem){
+          
+          var chip = document.getElementById(elem.id);
+          chip.innerHTML = 'working...';
+
+            google.script.run
+            .withSuccessHandler(
+              function(res){
+                if(res){
+                  chip.classList.add('chip-selected');
+                }
+                else{
+                  chip.classList.remove('chip-selected');
+                }
+                chip.innerHTML = elem.id;       
+              }
+            )
+            .withFailureHandler(
+              function(res){
+               chip.innerHTML = 'failed';    
+              }
+            )
+             .showType(elem.id);
+        }
+
+        function getChipsController(){
+          // var returnHTML = '';
+          // var chipDiv = document.getElementById('chipDiv');
+
+          // returnHTML += "<p> res</p>";
+          let output = document.getElementById('chipdiv');
+          output.innerHTML = "fetching...";
+
+          google.script.run
+          .withSuccessHandler(
+            function(res){
+              var returnHTML = '';
+              for(var type in res){
+                  var classes = 'chip';
+                  if(res[type]) classes += ' chip-selected'
+
+                returnHTML += `<button class="`+classes+`" id="`+type+`" value="`+res[type]+`" onclick="chipOnClick(this)">`+ type +`</buton>`;
+              }
+              output.innerHTML = returnHTML;
+            }
+          )
+          .withFailureHandler(
+            function(res){
+              output.innerHTML = "failure... :(";
+            }
+          )
+          .getChips();
+        }
+</script>

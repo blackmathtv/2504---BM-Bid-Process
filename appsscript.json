@@ -1,0 +1,23 @@
+{
+  "timeZone": "America/New_York",
+  "dependencies": {
+    "enabledAdvancedServices": [{
+      "userSymbol": "Docs",
+      "serviceId": "docs",
+      "version": "v1"
+    }, {
+      "userSymbol": "Drive",
+      "serviceId": "drive",
+      "version": "v2"
+    }, {
+      "userSymbol": "AppsActivity",
+      "serviceId": "appsactivity",
+      "version": "v1"
+    }, {
+      "userSymbol": "DriveActivity",
+      "serviceId": "driveactivity",
+      "version": "v2"
+    }]
+  },
+  "exceptionLogging": "STACKDRIVER"
+}

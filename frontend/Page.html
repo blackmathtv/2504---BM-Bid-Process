@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link href="//cdn.muicss.com/mui-0.10.0/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="//cdn.muicss.com/mui-0.10.0/js/mui.min.js"></script>
+
+    <?!= include('frontend/stylesheet'); ?>
+    <?!= include('frontend/JavaScript'); ?>
+    <?!= include('frontend/harvest'); ?>
+    <?!= include('frontend/filters'); ?>
+    <?!= include('frontend/uiControl'); ?>
+    
+  </head>
+  <body>
+      <ul class="mui-tabs__bar mui-tabs__bar--justified">
+          <li id="filtersButton">
+            <a data-mui-toggle="tab" data-mui-controls="pane-justified-1" onclick="toggleFiltersClicked()">
+              FILTERS
+            </a>
+          </li>
+          <li id="subtotalsButton" class="mui--is-active">
+            <a data-mui-toggle="tab" data-mui-controls="pane-justified-2" onclick="toggleSubtotalsClicked()">
+              SUBTOTALS
+            </a>
+          </li>
+        </ul>
+
+    <div id="mainPanel">
+        <div id="outputDiv">
+          <div id="subtotalDiv">
+          </div>
+          <div id="hiddenSubtotals" style="display: none"><p style=" text-align: center; margin-top: 150px">Subtotals are hidden!</p></div>
+        </div>
+        
+        <div id="chipdiv" style="display: none;"></div>
+    </div>
+
+    <div id="bottomButtons">
+        <div class="mui-divider"></div>
+        <button id= "export" onclick="OnExportClicked()" class="mui-btn  mui-btn--primary mui-btn--raised mui--text-center">EXPORT</button>
+        <br />
+        <button id= "hideshow" onclick="OnHideShowClicked()" class="mui-btn  mui-btn--primary mui-btn--raised mui--text-center" >HIDE VALUES</button>
+        <br />
+        <button id= "harvest" onclick="OnHarvestClicked()" class="mui-btn mui-btn--primary mui-btn--raised mui--text-center" >TALKING TO HARVEST...</button>    
+    </div>
+  </body>
+</html>

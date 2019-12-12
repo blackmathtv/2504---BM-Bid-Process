@@ -1,0 +1,42 @@
+<script>
+    function OnHarvestClicked(){
+    let output = document.getElementById('harvest');
+    output.innerHTML = "working...";
+    google.script.run
+    .withSuccessHandler(
+      function(res){
+        output.innerHTML = "CREATED ROLLUP"
+      }
+    )
+    .withFailureHandler(
+      function(res){
+        output.innerHTML = "something went wrong :("
+      }
+    )
+    .rollupHarvestProject();
+  }
+
+  function getHarvestStatus(){
+    let output = document.getElementById('harvest');
+    output.innerHTML = "loading...";
+
+    google.script.run
+    .withSuccessHandler(
+      function(res){
+        //if harvest job is not detected
+        if(res == false){
+          output.innerHTML = "CREATE HARVEST PROJECT";
+        }
+        else{
+          output.innerHTML = "UPDATE ROLLUP";
+        }
+      }
+    )
+    .withFailureHandler(
+      function(res){
+        output.innerHTML = "uuh oh no oh no"
+      }
+    )
+    .getHarvestStatus();
+  }
+</script>

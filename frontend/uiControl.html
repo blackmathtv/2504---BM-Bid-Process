@@ -1,0 +1,132 @@
+<script>
+  var valuesHidden = false;
+    //When hideShow button is clicked
+  let OnHideShowClicked = function(){
+    let hideshowbutton = document.getElementById('hideshow');
+    let mainDiv = document.getElementById('subtotalDiv');
+    let hiddenSubtotals = document.getElementById('hiddenSubtotals');
+
+    hideshowbutton.innerHTML = "working...";
+
+    //if already hidden, show the values
+    if(valuesHidden){
+      google.script.run
+        .withSuccessHandler(
+          function(res){
+            hideshowbutton.innerHTML = "Hide values";
+            mainDiv.style.display = "block";
+            hiddenSubtotals.style.display = "none";
+            valuesHidden = false;
+          }
+        )
+        .withFailureHandler(
+          function(){
+            hideshowbutton.innerHTML = "failed somehow";
+          }
+        )
+        .showNum();
+        }
+
+          //if values aren't hidden, hide them
+          else{
+            google.script.run
+            .withSuccessHandler(
+              function(res){
+                hideshowbutton.innerHTML = "Show values";
+                mainDiv.style.display = "none";
+                hiddenSubtotals.style.display = "block";
+                valuesHidden = true;
+              }
+            )
+            .withFailureHandler(
+                function(){
+                    hideshowbutton.innerHTML = "failed somehow";
+                }
+            )
+            .hideNum();
+          }
+        }
+
+        //on export button clicked
+  let OnExportClicked = function(){
+        let exportbutton = document.getElementById('export');
+        exportbutton.innerHTML = "exporting...";
+
+        google.script.run
+        .withSuccessHandler(
+            function(res){
+              exportbutton.innerHTML = "exported!";
+            }
+        )
+        .withFailureHandler(
+            function(res){
+              exportbutton.innerHTML = "failed :(";
+            }
+        )
+        .createDoc();
+    }
+
+  function getSubtotals(){
+    let output = document.getElementById('subtotalDiv');
+    output.innerHTML = "fetching...";
+
+    google.script.run
+    .withSuccessHandler(
+      function(data){
+        output.innerHTML= '';
+        for (var subsectionName in data.sections) {
+          output.innerHTML += 
+            '<h3 class="head">' +
+            subsectionName + 
+            ':</h3> <p class="paragraph">Subtotal: $' + 
+            data.sections[subsectionName].subtotal + 
+            '</p> <div class="mui-divider"></div>';
+        }
+
+        output.innerHTML += '<h3 class="head"> TOTALS </h3>';
+        output.innerHTML += '<p class="paragraph">' + 'Creative Markup:   '+ data.info.creativeMarkup + '%</p>';
+
+        for(var fee in data.info.fees){
+          output.innerHTML += '<p class="paragraph">' + fee + ':    ' + data.info.fees[fee]+'$ </p>';
+        }
+
+        output.innerHTML += '<h3>'+ data.info.total + '</h3>'
+        output.innerHTML += '<h3 style="color: #000000; opacity: 60%; padding-top: 0px; padding-bottom: 0px; margin-bottom: 0px; margin-top: 0px;"> Cost: $' + data.info.total + '</h3>';
+
+      }
+      )
+      .withFailureHandler(
+        function(res){
+          output.innerHTML = "failed"
+        }
+      )
+      .get();
+    }
+
+     let toggleFiltersClicked = function(){
+        let filters = document.getElementById('chipdiv');
+        let filtersButton = document.getElementById('filtersButton');
+
+        let subtotals = document.getElementById('outputDiv');
+        let subtotalsButton = document.getElementById('subtotalsButton');
+
+        subtotals.style.display = 'none';
+        filters.style.display = 'block';
+
+        subtotalsButton.classList.remove('mui--is-active');
+        filtersButton.classList.add('mui--is-active');
+    }
+
+    let toggleSubtotalsClicked = function(){
+      let filters = document.getElementById('chipdiv');
+      let filtersButton = document.getElementById('filtersButton');
+
+      let subtotals = document.getElementById('outputDiv');
+      let subtotalsButton = document.getElementById('subtotalsButton');
+
+      subtotals.style.display = 'block';
+      filters.style.display = 'none';
+      subtotalsButton.classList.add('mui--is-active');
+      filtersButton.classList.remove('mui--is-active');
+    }
+</script>
