@@ -44,4 +44,5 @@ let HarvestAuthHeaders = {
  
  # Other
  
- [program flow chart](https://www.lucidchart.com/documents/view/289f1fed-7bbf-4160-ad6a-27548cbad430/0_0)
+* [program flow chart](https://www.lucidchart.com/documents/view/289f1fed-7bbf-4160-ad6a-27548cbad430/0_0)
+* [UI Mockup](https://xd.adobe.com/view/a4109bc3-3717-406c-6142-a14c054418b9-d221/)
