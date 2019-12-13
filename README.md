@@ -1,5 +1,5 @@
 # Resources: 
-[#Installing and using clasp](https://github.com/google/clasp/blob/master/docs/typescript.md)
+[Installing and using clasp](https://github.com/google/clasp/blob/master/docs/typescript.md)
 
 [Google Apps scripting Documentation](https://developers.google.com/apps-script/reference/)
 
@@ -35,6 +35,12 @@ let HarvestAuthHeaders = {
  * Fill in the blanks with the appropriate values. This file is ignored by the .gitignore but make sure you don't push it to git. Pushing API keys to github is very bad.
  
  * Command + Shift + B should build the project and push it to the google script editor
+ 
+ * to view the add-on in the google script editor run `clasp open`
+ 
+ * to test the add-on in the script editor go to `run > test as add on`
+ 
+ * select a sheet to use it with, and when you rebuild the project, changes should appear when the google sheet page is refreshed 
  
  # Other
  
